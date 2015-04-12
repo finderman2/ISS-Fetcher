@@ -46,15 +46,12 @@ def checkPasses ():
         print('I will check again later, the next pass in in', hours, 'hours on', riseTime)
     elif minutes >= 10:
         print('There is a pass in', minutes, 'minutes', 'that lasts for', round(duration/60), 'minutes')
-        #preform action here, ie blink led
+        #perform action here, i.e. blink led
     else:
         print('Flash Lights! Pass in', minutes, 'minutes and', seconds, 'seconds for', round(duration/60), 'minutes')
         #flash lights based on how many minutes are left
     
     return
-
-#run the function
-#checkPasses()
 
 def checker():
     checkPasses()
