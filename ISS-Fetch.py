@@ -6,8 +6,8 @@ lat = '0.0'
 lon = '-0.0'
 alt = '0'
 
-#enter time to wait between each check
-tMin = 0.17
+#time to wait between each check
+tMin = 45
 #Do not alter this, converts minutes into seconds for timer
 tSec = tMin*60
 
@@ -15,6 +15,12 @@ tSec = tMin*60
 url = 'http://api.open-notify.org/iss-pass.json?lat='+lat+'&lon='+lon+'&alt='+alt+'&n=1'
 #setup reader codec to make sure html content is UTF-8, otherwise urllib throws an error
 reader = codecs.getreader("utf-8")
+
+def ledRainbow:
+    #cycle leds through all colors
+
+def ledFillup:
+    #light up LED's according to pass length, like loading bar
 
 def checkPasses ():
     #download JSON data
@@ -47,9 +53,18 @@ def checkPasses ():
     elif minutes >= 10:
         print('There is a pass in', minutes, 'minutes', 'that lasts for', round(duration/60), 'minutes')
         #perform action here, i.e. blink led
+        
+        #set next update time to be five minutes less than the next pass time
+        tSec = (minutes*60)-300
     else:
         print('Flash Lights! Pass in', minutes, 'minutes and', seconds, 'seconds for', round(duration/60), 'minutes')
-        #flash lights based on how many minutes are left
+        
+        #Pseudo Code
+        #if pass time is after 10pm or before 5am then don't do anything
+        #else: run rainbow sequence then progress bar
+        
+        #reset time back to normal duration
+        tSec=tMin*60
     
     return
 
